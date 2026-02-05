@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Our First Valentine's Day ❤️</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Cairo', sans-serif;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  color: white;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 18px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  width: 200px;
+  font-size: 16px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: white;
+  color: #ff4b7d;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ffe6ec;
+}
+
+#countdown {
+  font-size: 22px;
+  margin-top: 20px;
+}
+
+a {
+  color: white;
+  font-size: 24px;
+  text-decoration: none;
+  background: rgba(255,255,255,0.2);
+  padding: 12px 25px;
+  border-radius: 30px;
+}
+
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 20px;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-110vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<h2>Our First Valentine's Day ❤️</h2>
+<p>استني شوية… المفاجأة قربت 😌</p>
+
+<!-- Password Section -->
+<div id="password-section">
+  <p>ادخل الباسورد عشان تشوف العدّاد 🔐</p>
+  <input type="password" id="pass" placeholder="Password">
+  <br>
+  <button onclick="checkPassword()">ادخل ❤️</button>
+  <p id="wrong" style="color:#ffd1dc;"></p>
+</div>
+
+<!-- Countdown Section -->
+<div id="countdown" style="display:none;"></div>
+
+<script>
+// Floating Hearts
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (16 + Math.random() * 20) + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 500);
+
+// Password Check
+function checkPassword() {
+  var password = document.getElementById("pass").value;
+  if(password === "6122025") {
+    document.getElementById("password-section").style.display = "none";
+    document.getElementById("countdown").style.display = "block";
+    document.getElementById("countdown").innerHTML = "✨ مبسوطة؟ استني المفاجأة بقى ✨";
+    startCountdown();
+  } else {
+    document.getElementById("wrong").innerText = "الباسورد غلط 😢";
+  }
+}
+
+// Countdown
+function startCountdown() {
+  var countDownDate = new Date("Feb 14, 2026 00:00:00").getTime();
+
+  var x = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML =
+      days + " يوم ❤️ " + hours + " ساعة ❤️ " + minutes + " دقيقة ❤️ " + seconds + " ثانية";
+
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("countdown").innerHTML =
+      `<a href="https://sites.google.com/view/love-surprises/home?read_current=1">
+        افتحي المفاجأة ❤️
+      </a>`;
+    }
+  }, 1000);
+}
+</script>
+
+</body>
+</html>
